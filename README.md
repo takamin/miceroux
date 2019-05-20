@@ -16,7 +16,7 @@ brings AsciiDoc to Node.js!
 <!-- include the `miceroux.min.js` -->
 <script
     type="application/javascript"
-    src="foo/miceroux.min.js"></script>
+    src="https://takamin.github.io/miceroux/miceroux.min.js"></script>
 
 <script type="application/javascript">
 
@@ -25,6 +25,8 @@ brings AsciiDoc to Node.js!
 
 </script>
 ```
+
+* [Sample page](./sample/index.html)
 
 ## LICENSE
 
