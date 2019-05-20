@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Seisho sample</title>
+        <title>Miceroux.asciidoc sample</title>
     </head>
     <body>
-        <pre class="code asciidoc">
-            http://asciidoctor.org[*Asciidoctor*]
-            running on https://opalrb.com[_Opal_]
-            brings AsciiDoc to Node.js!
-        </pre>
-        <script src="../seisho.js"></script>
-        <script type="application/javascript">
-            seisho("pre.code.asciidoc");
-        </script>
+
+<pre class="code asciidoc">
+http://asciidoctor.org[*Asciidoctor*]
+running on https://opalrb.com[_Opal_]
+brings AsciiDoc to Node.js!
+</pre>
+
+<div class="code asciidoc">
+= 文書名はレンダリングされない？
+
+== 見出し2
+
+=== 見出し3
+
+==== 見出し4
+
+===== 見出し5
+
+====== 見出し6
+</div>
+<script type="application/javascript" src="../miceroux.js"></script>
+<script type="application/javascript">
+
+    // Preview the AsciiDoc in PRE content.
+    Miceroux.asciidoc("pre.code.asciidoc");
+
+    // Replace the source elements with a created ellement
+    Miceroux.asciidoc("div.code.asciidoc", {replace: true});
+
+</script>
     </body>
 </html>

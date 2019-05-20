@@ -1,34 +1,68 @@
 "use strict";
+
 const AsciiDoctor = require('@asciidoctor/core');
-const $ = require('jquery');
-const seisho = (selector, options) => {
+const Miceroux = {};
+window.Miceroux = Miceroux;
+Miceroux.convertIndex = 0;
+
+/**
+ * Convert asciidoc document contained in HTML elements.
+ * 
+ * @param {string|Array<HTMLElement>|HTMLElement} sourceRef A specifier to the
+ *      elements that has an AsciiDoc as its innerHTML.
+ * @param {object|undefined} options Options to change a behavior. See follow-
+ * ing schema:
+ * ```yaml
+ * type: object
+ * properties:
+ *   replace:
+ *     type: boolean
+ *     description: Specify whether the source element will be removed or not.
+ * ```
+ * @returns {undefined}
+ */
+Miceroux.asciidoc = (sourceRef, options) => {
     options = options || {};
-    if(Array.isArray(selector)) {
-        selector.forEach( item => seisho(item, options) );
-    } else if(typeof(selector) === "string") {
-        $(selector).each( function() { seisho(this, options); } );
+    if(typeof(sourceRef) === "string") {
+        sourceRef = Array.from(document.querySelectorAll(sourceRef));
+    }
+    if(Array.isArray(sourceRef)) {
+        sourceRef.forEach( item => convert(item, options) );
     } else {
-        const outputElement = document.createElement("DIV");
-        if(selector instanceof HTMLElement) {
-            const asciidoctor = AsciiDoctor();
-            const element = selector;
-            const parent = element.parentNode;
-            try {
-                outputElement.innerHTML = asciidoctor.convert(element.innerHTML);
-                parent.insertBefore(outputElement, element.nextElementSibling);
-                if(options.removeSource) {
-                    parent.removeChild(element);
-                }
-            } catch(err) {
-                outputElement.innerHTML = `Error: Conversion was failed ${err.message}`;
-                parent.insertBefore(outputElement, element.nextElementSibling);
-            }
-        } else {
-            outputElement.innerHTML =
-                `No HTML element supplied. The name of the constructor is ${
-                    selector.constructor.name}`;
-            document.appendChild(outputElement);
-        }
+        convert(sourceRef, options);
     }
 };
-window.seisho = seisho;
+
+const convert = (element, options) => {
+    element.id = element.id || newConvertId();
+    const outputElement = document.createElement("DIV");
+    outputElement.classList.add("miceroux", "result", "type-asciidoc");
+    outputElement.setAttribute("src", element.id);
+
+    if(!(element instanceof HTMLElement)) {
+        outputElement.innerHTML =
+            `No HTML element supplied. The name of the constructor is ${
+                element.constructor.name}`;
+        document.appendChild(outputElement);
+        return;
+    }
+    const asciidoctor = AsciiDoctor();
+    const parent = element.parentNode;
+    const asciidoc = element.innerHTML.replace(/^\s*/, "");
+    try {
+        outputElement.innerHTML = asciidoctor.convert(asciidoc);
+        parent.insertBefore(outputElement, element.nextElementSibling);
+        if(options.replace) {
+            parent.removeChild(element);
+        }
+    } catch(err) {
+        outputElement.innerHTML = `Error: Conversion was failed ${
+            err.message}`;
+        parent.insertBefore(outputElement, element.nextElementSibling);
+    }
+};
+const newConvertId = () => {
+    const id = `miceroux${Miceroux.convertIndex}`;
+    ++Miceroux.convertIndex;
+    return id;
+};

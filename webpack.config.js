@@ -1,9 +1,9 @@
 module.exports = {
-    mode: "development",
+    mode: "production",
     entry: "./index.js",
     output: {
         path: `${__dirname}`,
-        filename: "seisho.js",
+        filename: "miceroux.min.js",
     },
     module: {
         rules: [
