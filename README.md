@@ -1,4 +1,7 @@
-# miceroux - 見せる
+# miceroux - ﾐｾﾙｰ
+
+![](https://cdn-ak.f.st-hatena.com/images/fotolife/t/takamints/20190521/20190521164525.jpg)  
+photo credit: InstructionalSolutions <a href="http://www.flickr.com/photos/154958442@N02/37344951101">Keyboard and Blank Paper</a> via <a href="http://photopin.com">photopin</a> <a href="https://creativecommons.org/licenses/by/2.0/">(license)</a>
 
 HTML要素内のAsciiDoc文書をHTMLに変換して「見せる」JavaScriptです。
 
