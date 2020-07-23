@@ -1,6 +1,6 @@
 {
   "name": "miceroux",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "AsciiDoctor renderer for web sites",
   "main": "index.js",
   "scripts": {
@@ -24,17 +24,17 @@
   },
   "homepage": "https://github.com/takamin/miceroux#readme",
   "devDependencies": {
-    "@asciidoctor/cli": "^3.0.1",
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
-    "babel-loader": "^8.0.6",
-    "eslint": "^5.16.0",
-    "eslint-loader": "^2.2.1",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "@asciidoctor/cli": "^3.4.0",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^4.0.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@asciidoctor/core": "^2.0.3"
+    "@asciidoctor/core": "^2.2.0"
   }
 }
